@@ -1,0 +1,249 @@
+:root {
+  /* Default: Dark Mode (Black Background, Snow Text) */
+  --bg: #000000;
+  --card: #0d0d0d;
+  --text-primary: #f8f8ff;
+  --text-secondary: rgba(248, 248, 255, 0.25);
+  --input-bg: #060606;
+  --input-border: rgba(255, 255, 255, 0.12);
+  --accent: #f8f8ff;
+  --accent-text: #000000;
+  --dot-color: rgba(255, 255, 255, 0.05);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --todo-bg: #070707;
+  --todo-hover: #0d0d0d;
+  --progress-track: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme='light'] {
+  /* Light Mode (Snow Background, Black Text) */
+  --bg: #f8f8ff;
+  --card: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.3);
+  --input-bg: #f2f2f8;
+  --input-border: rgba(0, 0, 0, 0.08);
+  --accent: #000000;
+  --accent-text: #f8f8ff;
+  --dot-color: rgba(0, 0, 0, 0.03);
+  --shadow: rgba(0, 0, 0, 0.1);
+  --todo-bg: #f9f9fb;
+  --todo-hover: #f0f0f5;
+  --progress-track: rgba(0, 0, 0, 0.04);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ─────────────────────────────────────────
+   Keyframes
+ ───────────────────────────────────────── */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.97) translateY(-10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────
+   Cards
+ ───────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--input-border);
+  border-radius: 32px;
+  box-shadow: 0 40px 100px -20px var(--shadow);
+  position: relative;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.auth-card {
+  padding: 56px 64px;
+  width: 75vw;
+  max-width: 1000px;
+  min-width: 500px;
+  animation: fadeInScale 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.todo-card {
+  padding: 56px 64px;
+  width: 75vw;
+  max-width: 1400px;
+  min-width: 600px;
+  animation: slideInUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ─────────────────────────────────────────
+   Inputs
+ ───────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 13px 16px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.4s;
+}
+
+.input-field::placeholder {
+  color: var(--text-secondary);
+}
+
+.input-field:focus {
+  border-color: var(--text-primary);
+  box-shadow: 0 0 0 3px var(--dot-color);
+}
+
+/* ─────────────────────────────────────────
+   Primary Button
+ ───────────────────────────────────────── */
+.btn-snow {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  background: var(--accent);
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: all 0.2s;
+}
+
+.btn-snow:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.9);
+}
+
+.btn-snow:active {
+  transform: scale(0.97);
+}
+
+/* ─────────────────────────────────────────
+   Todo Item
+ ───────────────────────────────────────── */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--todo-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  transition: all 0.2s;
+}
+
+.todo-item:hover {
+  background: var(--todo-hover);
+  transform: translateX(2px);
+}
+
+/* ─────────────────────────────────────────
+   Checkbox
+ ───────────────────────────────────────── */
+.cb {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.cb.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ─────────────────────────────────────────
+   Progress Bar
+ ───────────────────────────────────────── */
+.progress-track {
+  height: 2px;
+  background: var(--progress-track);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.5s ease;
+}
+
+/* ─────────────────────────────────────────
+   Badge & Helpers
+ ───────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 99px;
+  padding: 3px 10px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.divider {
+  height: 1px;
+  background: var(--input-border);
+  margin: 20px 0;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--input-border);
+  border-top-color: var(--text-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.error-box {
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  color: #ff4444;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
